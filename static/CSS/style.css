@@ -1,0 +1,10 @@
+.image-container {
+    height: 150px; /* Set the height of the container */
+    overflow: hidden; /* Hide any overflow content */
+}
+
+.image-container img {
+    width: 50%; /* Set the width of the image to fill the container */
+    height: auto; /* Allow the height to adjust according to the image aspect ratio */
+    object-fit: cover; /* Maintain the aspect ratio while covering the container */
+}

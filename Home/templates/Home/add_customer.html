@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+{% load static %}
+{%block content %}
+
+    <h2>Add Customer and update </h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+     
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name='name'><br>
+        <label for="city">Address:</label><br>
+        <input type="text" id="address" name="address"><br><br>
+        <label for="photo">Photo:</label><br>
+        <input type="file" class="form-control" id="image" name="image"><br><br>
+        <button type="submit">Submit</button>
+    </form>
+{%endblock%}
