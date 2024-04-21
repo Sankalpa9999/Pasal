@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from.models import Customer,item
 from .forms import addform, updateform, itemaddform, itemupdateform
+
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='login')
 # Create your views here.
 def index(request):
     Item = item.objects.all()
@@ -18,6 +22,9 @@ def customer(request):
     return render(request,'Home/customer.html',cont)
 
 def add_customer(request):
+    if not request.user.is_superuser:
+        return redirect('customer')
+
     form = addform()
     if request.method == 'POST':
         form = addform(request.POST,request.FILES)
@@ -28,6 +35,8 @@ def add_customer(request):
     
 
 def update_customer(request,id):
+    # if not request.user.is_superuser:
+    #     return redirect('index')
     Customers = Customer.objects.get(pk=id)
     form = updateform(instance = Customers)
     if request.method == 'POST':
